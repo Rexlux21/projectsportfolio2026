@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — RexLux Digital</title>
+<meta name="description" content="Get a free quote for your website or web application project from RexLux Digital.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%237c5cff%22/><text x=%2250%25%22 y=%2262%25%22 font-size=%2258%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22>R</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="contact">
+
+<a href="#main" class="skip-link">Skip to content</a>
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="noise-overlay"></div>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><span class="logo-mark">R</span>RexLux Digital</a>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html" data-page="home">Home</a>
+      <a href="services.html" data-page="services">Services</a>
+      <a href="projects.html" data-page="projects">Projects</a>
+      <a href="contact.html" data-page="contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-ghost btn-sm">Get a Quote</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="container">
+      <div class="eyebrow" style="justify-content:center;display:flex;">Get In Touch</div>
+      <h1>Let's <span class="gradient-text">Talk</span></h1>
+      <p>Tell us about your project and we'll get back to you within one business day.</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="about-grid" style="align-items:flex-start;">
+
+        <div class="card" data-reveal="left">
+          <h2 style="margin-bottom:6px;">Project Details</h2>
+          <p style="margin-bottom:28px;">Fill out the form and we'll reach out with next steps.</p>
+          <form id="contact-form">
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" autocomplete="organization">
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel">
+              </div>
+              <div class="field">
+                <label for="project-type">Project Type</label>
+                <select id="project-type" name="project_type">
+                  <option value="New Website">New Website</option>
+                  <option value="Web Application">Web Application</option>
+                  <option value="Redesign">Website Redesign</option>
+                  <option value="Maintenance">Maintenance &amp; Support</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="budget">Budget</label>
+                <select id="budget" name="budget">
+                  <option value="Under $1,000">Under $1,000</option>
+                  <option value="$1,000–$3,000">$1,000 – $3,000</option>
+                  <option value="$3,000–$7,000">$3,000 – $7,000</option>
+                  <option value="$7,000+">$7,000+</option>
+                  <option value="Not sure yet">Not sure yet</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Tell us a bit about your business and what you need..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            <div class="form-status" id="form-status"></div>
+          </form>
+        </div>
+
+        <div data-reveal="right">
+          <div class="card" style="margin-bottom:24px;">
+            <h3 style="margin-bottom:18px;">Business Information</h3>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div style="display:flex;gap:12px;align-items:center;">
+                <span class="info-card-icon" style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:flex;align-items:center;justify-content:center;flex:none;color:#04040c;">✉</span>
+                <div><strong style="font-size:.9rem;">Email</strong><br><span style="font-size:.88rem;color:var(--text-dim);">hello@rexluxdigital.com</span></div>
+              </div>
+              <div style="display:flex;gap:12px;align-items:center;">
+                <span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:flex;align-items:center;justify-content:center;flex:none;color:#04040c;">☎</span>
+                <div><strong style="font-size:.9rem;">Phone</strong><br><span style="font-size:.88rem;color:var(--text-dim);">(555) 010-0100</span></div>
+              </div>
+              <div style="display:flex;gap:12px;align-items:center;">
+                <span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:flex;align-items:center;justify-content:center;flex:none;color:#04040c;">📍</span>
+                <div><strong style="font-size:.9rem;">Location</strong><br><span style="font-size:.88rem;color:var(--text-dim);">Remote — serving clients everywhere</span></div>
+              </div>
+              <div style="display:flex;gap:12px;align-items:center;">
+                <span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:flex;align-items:center;justify-content:center;flex:none;color:#04040c;">🕐</span>
+                <div><strong style="font-size:.9rem;">Business Hours</strong><br><span style="font-size:.88rem;color:var(--text-dim);">Mon–Fri, 9am–6pm</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="terminal">
+            <div class="terminal-bar"><span></span><span></span><span></span></div>
+            <div class="terminal-body">
+              <div class="c3">$ status</div>
+              <div class="c2">✓ accepting new projects</div>
+              <div class="c3">$ response_time</div>
+              <div class="c1">~1 business day<span class="terminal-cursor"></span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">FAQ</div>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div style="max-width:720px;margin:0 auto;" data-reveal>
+        <div class="faq-item open">
+          <div class="faq-q"><span>How long does a website take?</span><span class="plus">+</span></div>
+          <div class="faq-a">Most business websites take 2–4 weeks from kickoff to launch, depending on scope. Web applications and larger projects are scoped individually after discovery.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Do you redesign websites?</span><span class="plus">+</span></div>
+          <div class="faq-a">Yes. We regularly modernize outdated sites — improving design, speed and mobile experience while preserving your existing content and SEO rankings.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Can you maintain my website?</span><span class="plus">+</span></div>
+          <div class="faq-a">Absolutely. We offer ongoing maintenance plans covering updates, backups, security monitoring and small content changes so your site stays healthy after launch.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>How much does a website cost?</span><span class="plus">+</span></div>
+          <div class="faq-a">Pricing depends on scope — a landing page costs less than a full web application. Share your project details in the form above and we'll send a free, no-obligation quote.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta-band" data-reveal="scale">
+        <h2>Ready to Grow?</h2>
+        <p>Book a free, no-pressure consultation and let's map out your project.</p>
+        <a href="#contact-form" class="btn btn-primary">Book a Free Consultation</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-mark">R</span>RexLux Digital</a>
+        <p>Premium websites and web applications that help modern businesses grow online.</p>
+        <div class="social-row">
+          <a href="#" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05A9.24 9.24 0 0 1 12 6.84c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.95.68 1.92 0 1.39-.01 2.51-.01 2.85 0 .27.18.6.69.49A10.25 10.25 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM3.2 8.75h3.5V21H3.2V8.75Zm6.36 0h3.36v1.68h.05c.47-.88 1.62-1.8 3.33-1.8 3.56 0 4.22 2.34 4.22 5.39V21H16.9v-5.4c0-1.28-.02-2.94-1.79-2.94-1.8 0-2.07 1.4-2.07 2.85V21H9.56V8.75Z"/></svg></a>
+          <a href="#" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.5 8.57L23.3 22h-7.02l-5.5-7.19L4.4 22H1.3l8.03-9.17L1 2h7.2l4.97 6.6L18.9 2Zm-1.23 18h1.95L7.42 3.9H5.33L17.67 20Z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="admin/login.html">Admin</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Stay Updated</h5>
+        <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:10px;">Occasional tips on web design &amp; growth. No spam.</p>
+        <form class="newsletter">
+          <input type="email" placeholder="you@email.com" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> RexLux Digital. All rights reserved.</span>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/particles.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/contact.js"></script>
+</body>
+</html>

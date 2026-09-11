@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RexLux Digital — Modern Websites. Real Business Growth.</title>
+<meta name="description" content="RexLux Digital builds fast, modern websites and web applications that help businesses attract more customers and grow online.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%237c5cff%22/><text x=%2250%25%22 y=%2262%25%22 font-size=%2258%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22>R</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+
+<a href="#main" class="skip-link">Skip to content</a>
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="noise-overlay"></div>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><span class="logo-mark">R</span>RexLux Digital</a>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html" data-page="home">Home</a>
+      <a href="services.html" data-page="services">Services</a>
+      <a href="projects.html" data-page="projects">Projects</a>
+      <a href="contact.html" data-page="contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-ghost btn-sm">Get a Quote</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="hero-inner">
+      <div class="eyebrow text-center" style="justify-content:center;display:flex;">Web Development Agency</div>
+      <h1>Modern Websites.<br>Real <span class="gradient-text" data-typed='["Business Growth.","More Customers.","Online Presence."]'></span><span class="typed-cursor"></span></h1>
+      <p class="lede">We build fast, modern websites that help businesses attract more customers and grow online.</p>
+      <div class="hero-cta">
+        <a href="projects.html" class="btn btn-ghost">View Projects</a>
+        <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num" data-count="6" data-suffix="+">0</div><div class="label">Core Services</div></div>
+        <div class="hero-stat"><div class="num" data-count="100" data-suffix="%">0</div><div class="label">Mobile-First</div></div>
+        <div class="hero-stat"><div class="num" data-count="6" data-suffix="-Step">0</div><div class="label">Delivery Process</div></div>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+  </section>
+
+  <!-- Tech marquee -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="marquee-item"><span class="dot"></span>React</div>
+      <div class="marquee-item"><span class="dot"></span>JavaScript</div>
+      <div class="marquee-item"><span class="dot"></span>Python</div>
+      <div class="marquee-item"><span class="dot"></span>Django</div>
+      <div class="marquee-item"><span class="dot"></span>Node.js</div>
+      <div class="marquee-item"><span class="dot"></span>REST APIs</div>
+      <div class="marquee-item"><span class="dot"></span>SEO</div>
+      <div class="marquee-item"><span class="dot"></span>Git &amp; GitHub</div>
+      <div class="marquee-item"><span class="dot"></span>React</div>
+      <div class="marquee-item"><span class="dot"></span>JavaScript</div>
+      <div class="marquee-item"><span class="dot"></span>Python</div>
+      <div class="marquee-item"><span class="dot"></span>Django</div>
+      <div class="marquee-item"><span class="dot"></span>Node.js</div>
+      <div class="marquee-item"><span class="dot"></span>REST APIs</div>
+      <div class="marquee-item"><span class="dot"></span>SEO</div>
+      <div class="marquee-item"><span class="dot"></span>Git &amp; GitHub</div>
+    </div>
+  </div>
+
+  <!-- Who We Are -->
+  <section>
+    <div class="container about-grid">
+      <div class="about-copy" data-reveal="left">
+        <div class="eyebrow">Who We Are</div>
+        <h2>Built for businesses that want to look as good as they perform.</h2>
+        <p>RexLux Digital is a web development agency focused on building premium websites and web applications for businesses. We combine clean design with modern engineering so your site is fast, credible, and built to grow with you.</p>
+        <ul class="about-checks">
+          <li><span class="dot2">✓</span> Direct communication — no account managers, no runaround</li>
+          <li><span class="dot2">✓</span> Modern stack: React, Python, Django, JavaScript</li>
+          <li><span class="dot2">✓</span> Built for speed, SEO and conversions from day one</li>
+        </ul>
+      </div>
+      <div data-reveal="right">
+        <div class="terminal">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <div class="terminal-body" id="terminal-body"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section class="section-tight">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">What We Do</div>
+        <h2>Services built to move the needle</h2>
+        <p>From your first landing page to a full web application, we cover the entire lifecycle of your site.</p>
+      </div>
+      <div class="grid-3 stagger" id="home-services-grid"></div>
+      <div class="text-center mt-40" data-reveal>
+        <a href="services.html" class="btn btn-ghost">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section>
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Selected Work</div>
+        <h2>Featured Projects</h2>
+        <p>A look at recent builds spanning business sites, web apps and dashboards.</p>
+      </div>
+      <div class="project-grid-wrap stagger" id="featured-projects-grid"></div>
+      <div class="text-center mt-40" data-reveal>
+        <a href="projects.html" class="btn btn-ghost">View Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section-tight">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Why RexLux</div>
+        <h2>Why Choose RexLux</h2>
+      </div>
+      <div class="feature-grid stagger">
+        <div class="feature" data-reveal><span class="check">✓</span><span class="label">Fast Delivery</span></div>
+        <div class="feature" data-reveal><span class="check">✓</span><span class="label">Modern Design</span></div>
+        <div class="feature" data-reveal><span class="check">✓</span><span class="label">Mobile Friendly</span></div>
+        <div class="feature" data-reveal><span class="check">✓</span><span class="label">SEO Ready</span></div>
+        <div class="feature" data-reveal><span class="check">✓</span><span class="label">Secure</span></div>
+        <div class="feature" data-reveal><span class="check">✓</span><span class="label">Ongoing Support</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="container">
+      <div class="cta-band" data-reveal="scale">
+        <h2>Ready to build your next website?</h2>
+        <p>Tell us about your business and we'll put together a free, no-pressure proposal.</p>
+        <a href="contact.html" class="btn btn-primary">Start Your Project</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-mark">R</span>RexLux Digital</a>
+        <p>Premium websites and web applications that help modern businesses grow online.</p>
+        <div class="social-row">
+          <a href="#" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05A9.24 9.24 0 0 1 12 6.84c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.95.68 1.92 0 1.39-.01 2.51-.01 2.85 0 .27.18.6.69.49A10.25 10.25 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM3.2 8.75h3.5V21H3.2V8.75Zm6.36 0h3.36v1.68h.05c.47-.88 1.62-1.8 3.33-1.8 3.56 0 4.22 2.34 4.22 5.39V21H16.9v-5.4c0-1.28-.02-2.94-1.79-2.94-1.8 0-2.07 1.4-2.07 2.85V21H9.56V8.75Z"/></svg></a>
+          <a href="#" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.5 8.57L23.3 22h-7.02l-5.5-7.19L4.4 22H1.3l8.03-9.17L1 2h7.2l4.97 6.6L18.9 2Zm-1.23 18h1.95L7.42 3.9H5.33L17.67 20Z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="admin/login.html">Admin</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Stay Updated</h5>
+        <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:10px;">Occasional tips on web design &amp; growth. No spam.</p>
+        <form class="newsletter">
+          <input type="email" placeholder="you@email.com" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> RexLux Digital. All rights reserved.</span>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/particles.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  rxRenderServices('#home-services-grid', { limit: 4 });
+  rxRenderProjects('#featured-projects-grid', { limit: 3 });
+</script>
+</body>
+</html>
