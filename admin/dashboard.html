@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — RexLux Digital</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%237c5cff%22/><text x=%2250%25%22 y=%2262%25%22 font-size=%2258%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22>R</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="noise-overlay"></div>
+
+<div class="admin-shell">
+  <header class="admin-topbar">
+    <div class="container">
+      <a href="../index.html" class="logo"><span class="logo-mark">R</span>RexLux Digital <span class="badge" style="margin-left:10px;">Admin</span></a>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <a href="../index.html" class="btn btn-ghost btn-sm" target="_blank">View Site ↗</a>
+        <button class="btn btn-ghost btn-sm" id="logout-btn">Log Out</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-wrap">
+    <h1 style="margin-bottom:8px;">Content Dashboard</h1>
+    <p style="color:var(--text-dim);margin-bottom:40px;">Edit the services and projects shown on your live site. Changes save to this browser instantly — use <strong>Export JSON</strong> to publish them for every visitor.</p>
+
+    <div class="admin-stats">
+      <div class="admin-stat"><div class="num" id="stat-services">0</div><div class="label">Services</div></div>
+      <div class="admin-stat"><div class="num" id="stat-projects">0</div><div class="label">Projects</div></div>
+    </div>
+
+    <!-- Services -->
+    <div class="admin-panel">
+      <h2 id="service-form-title">Add Service</h2>
+      <p class="hint">Shown on the Home &amp; Services pages.</p>
+      <form id="service-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="s-title">Title</label>
+            <input type="text" id="s-title" name="title" required>
+          </div>
+          <div class="field">
+            <label for="s-icon">Icon</label>
+            <select id="s-icon" name="icon">
+              <option value="code">Code</option>
+              <option value="layers">Layers</option>
+              <option value="refresh">Refresh</option>
+              <option value="shield">Shield</option>
+              <option value="trend">Trend</option>
+              <option value="bolt">Bolt</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="s-summary">Short Summary (used on Home &amp; card preview)</label>
+            <input type="text" id="s-summary" name="summary" required>
+          </div>
+          <div class="field full">
+            <label for="s-detail">Full Description (used on Services page)</label>
+            <textarea id="s-detail" name="detail"></textarea>
+          </div>
+        </div>
+        <div class="admin-form-actions">
+          <button type="submit" class="btn btn-primary">Save Service</button>
+          <button type="button" class="btn btn-ghost" id="reset-service-form">Clear Form</button>
+        </div>
+      </form>
+      <hr style="border-color:var(--border);margin:30px 0;">
+      <div id="service-list"></div>
+    </div>
+
+    <!-- Projects -->
+    <div class="admin-panel">
+      <h2 id="project-form-title">Add Project</h2>
+      <p class="hint">Shown on the Home (featured) &amp; Projects pages.</p>
+      <form id="project-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="p-name">Project Name</label>
+            <input type="text" id="p-name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="p-category">Categories (comma-separated: business, react, python, landing)</label>
+            <input type="text" id="p-category" name="category" placeholder="business, react">
+          </div>
+          <div class="field">
+            <label for="p-tech">Technology (comma-separated)</label>
+            <input type="text" id="p-tech" name="tech" placeholder="React, REST API">
+          </div>
+          <div class="field">
+            <label for="p-demo">Live Demo URL</label>
+            <input type="url" id="p-demo" name="demo" placeholder="https://...">
+          </div>
+          <div class="field full">
+            <label for="p-github">GitHub URL</label>
+            <input type="url" id="p-github" name="github" placeholder="https://github.com/...">
+          </div>
+          <div class="field full">
+            <label for="p-description">Description</label>
+            <textarea id="p-description" name="description" required></textarea>
+          </div>
+        </div>
+        <div class="admin-form-actions">
+          <button type="submit" class="btn btn-primary">Save Project</button>
+          <button type="button" class="btn btn-ghost" id="reset-project-form">Clear Form</button>
+        </div>
+      </form>
+      <hr style="border-color:var(--border);margin:30px 0;">
+      <div id="project-list"></div>
+    </div>
+
+    <!-- Data management -->
+    <div class="admin-panel">
+      <h2>Publish Content</h2>
+      <p class="hint">Export your edits as JSON, then paste them into <code>assets/js/data.js</code> (the <code>RX_DEFAULT_DATA</code> object) and push to GitHub so all visitors see the update.</p>
+      <div class="admin-io-actions">
+        <button type="button" class="btn btn-primary" id="export-json">Export JSON</button>
+        <label class="file-input-label">
+          Import JSON
+          <input type="file" id="import-json" accept="application/json">
+        </label>
+        <button type="button" class="btn btn-ghost danger" id="restore-defaults">Restore Defaults</button>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="admin-panel">
+      <h2>Change Password</h2>
+      <p class="hint">This protects the admin panel in this browser. See the security note below.</p>
+      <form id="password-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="current-password">Current Password</label>
+            <input type="password" id="current-password" name="current" required>
+          </div>
+          <div class="field"></div>
+          <div class="field">
+            <label for="new-password">New Password</label>
+            <input type="password" id="new-password" name="next" required minlength="6">
+          </div>
+          <div class="field">
+            <label for="confirm-password">Confirm New Password</label>
+            <input type="password" id="confirm-password" name="confirmPassword" required minlength="6">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Password</button>
+        <div class="form-status" id="password-msg"></div>
+      </form>
+      <div class="admin-default-note" style="margin-top:24px;">
+        <strong>Note:</strong> this is a static GitHub Pages site with no server, so this login only protects the panel in your own browser — it isn't a substitute for real backend authentication. Don't use it to gate anything highly sensitive.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script>rxInitDashboard();</script>
+</body>
+</html>

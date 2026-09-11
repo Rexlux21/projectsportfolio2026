@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login — RexLux Digital</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%237c5cff%22/><text x=%2250%25%22 y=%2262%25%22 font-size=%2258%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22>R</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="noise-overlay"></div>
+
+<div class="login-shell">
+  <div class="orb orb-1" style="top:-80px;left:-80px;"></div>
+  <div class="orb orb-2" style="bottom:-100px;right:-80px;"></div>
+  <div class="login-card">
+    <div class="logo"><span class="logo-mark">R</span>RexLux Digital</div>
+    <h1>Admin Access</h1>
+    <p class="hint">Sign in to manage your site content</p>
+    <form id="login-form">
+      <div class="field">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="password" required autocomplete="current-password">
+      </div>
+      <div class="login-error" id="login-error"></div>
+      <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+    </form>
+    <div class="admin-default-note">First time here? Default password is <strong>rexlux2026</strong> — change it from the dashboard after logging in.</div>
+    <a href="../index.html" class="login-back">← Back to site</a>
+  </div>
+</div>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script>rxInitLoginPage();</script>
+</body>
+</html>
