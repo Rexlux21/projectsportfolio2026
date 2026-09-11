@@ -7,14 +7,22 @@ to GitHub Pages.
 Pages: **Home · Services · Projects · Contact · Privacy Policy**, plus a
 lightweight **Admin** area for editing Services/Projects content.
 
-## Go live in 5 minutes (GitHub Pages)
+## Go live (GitHub Pages)
 
-1. Push this repo/branch to GitHub (already done if you're reading this from the repo).
-2. In your GitHub repo, go to **Settings → Pages**.
-3. Under **Build and deployment → Source**, choose **Deploy from a branch**.
-4. Pick this branch (or `main` after merging) and folder **`/ (root)`**, then **Save**.
-5. GitHub will publish the site at `https://<your-username>.github.io/<repo-name>/`
-   within a minute or two. No build step, no CLI needed.
+A workflow at `.github/workflows/deploy-pages.yml` already builds and deploys
+the site on every push to `main` — there's nothing to configure in it. The
+only manual step is switching on Pages once:
+
+1. Go to **Settings → Pages** in this repo.
+2. Under **Build and deployment → Source**, choose **GitHub Actions**
+   (not "Deploy from a branch" — the workflow already handles the build/deploy).
+3. That's it. The next push (or a manual run of the "Deploy to GitHub Pages"
+   workflow under the **Actions** tab) publishes the site at
+   `https://<your-username>.github.io/<repo-name>/`.
+
+This one switch has to be flipped by a signed-in repo admin in the Settings
+UI — GitHub's API refuses to create a Pages site on behalf of an app
+installation (including Claude's), so it can't be done any other way.
 
 That's it — the whole site is static HTML/CSS/JS, so there's nothing to compile.
 
@@ -75,6 +83,8 @@ assets/
     main.js              Nav, scroll reveals, counters, typing effect, FAQ, filters
     contact.js            Formspree form submission
     admin.js               Admin auth + CRUD + import/export
+.github/workflows/
+  deploy-pages.yml    Auto-deploys to GitHub Pages on every push to main
 ```
 
 ## Design
