@@ -1,4 +1,6 @@
-/* Animated particle network background — pure canvas, no deps. */
+/* Drifting embers/petals background — pure canvas, no deps.
+   Soft red, ink-black and warm-gray motes fall and sway slowly,
+   evoking floating ash or maple petals rather than a tech network. */
 (function () {
   const canvas = document.getElementById('bg-canvas');
   if (!canvas) return;
@@ -7,7 +9,7 @@
 
   let w, h, dpr;
   let particles = [];
-  const COLORS = ['109,75,255', '10,168,196', '217,38,176'];
+  const COLORS = ['156,36,24', '217,87,63', '42,38,34', '140,133,119'];
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -15,15 +17,22 @@
     h = canvas.height = window.innerHeight * dpr;
     canvas.style.width = window.innerWidth + 'px';
     canvas.style.height = window.innerHeight + 'px';
-    const count = Math.min(90, Math.floor((window.innerWidth * window.innerHeight) / 18000));
-    particles = Array.from({ length: count }, () => ({
+    const count = Math.min(70, Math.floor((window.innerWidth * window.innerHeight) / 22000));
+    particles = Array.from({ length: count }, () => spawn(Math.random() * h));
+  }
+
+  function spawn(y) {
+    return {
       x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.35 * dpr,
-      vy: (Math.random() - 0.5) * 0.35 * dpr,
-      r: (Math.random() * 1.6 + 0.6) * dpr,
+      y: y == null ? -20 * dpr : y,
+      vy: (Math.random() * 0.22 + 0.1) * dpr,
+      sway: Math.random() * Math.PI * 2,
+      swaySpeed: (Math.random() * 0.012 + 0.006),
+      swayAmp: (Math.random() * 0.5 + 0.2) * dpr,
+      r: (Math.random() * 2.2 + 0.9) * dpr,
       c: COLORS[Math.floor(Math.random() * COLORS.length)],
-    }));
+      alpha: Math.random() * 0.35 + 0.35,
+    };
   }
 
   const mouse = { x: null, y: null };
@@ -35,42 +44,30 @@
 
   function step() {
     ctx.clearRect(0, 0, w, h);
-    const linkDist = 130 * dpr;
 
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
-      p.x += p.vx;
+      p.sway += p.swaySpeed;
       p.y += p.vy;
-      if (p.x < 0 || p.x > w) p.vx *= -1;
-      if (p.y < 0 || p.y > h) p.vy *= -1;
+      p.x += Math.sin(p.sway) * p.swayAmp * 0.05;
 
       if (mouse.x != null) {
         const dx = p.x - mouse.x, dy = p.y - mouse.y;
         const d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 160 * dpr) {
-          p.x += dx / d * 0.6;
-          p.y += dy / d * 0.6;
+        if (d < 140 * dpr && d > 0.01) {
+          p.x += (dx / d) * 0.8;
+          p.y += (dy / d) * 0.4;
         }
+      }
+
+      if (p.y > h + 20 * dpr || p.x < -20 * dpr || p.x > w + 20 * dpr) {
+        Object.assign(p, spawn(-20 * dpr), { x: Math.random() * w });
       }
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${p.c},.8)`;
+      ctx.fillStyle = `rgba(${p.c},${p.alpha})`;
       ctx.fill();
-
-      for (let j = i + 1; j < particles.length; j++) {
-        const q = particles[j];
-        const dx = p.x - q.x, dy = p.y - q.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < linkDist) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = `rgba(109,75,255,${(1 - dist / linkDist) * 0.18})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      }
     }
     if (!reduceMotion) requestAnimationFrame(step);
   }
