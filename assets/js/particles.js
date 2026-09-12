@@ -7,7 +7,7 @@
 
   let w, h, dpr;
   let particles = [];
-  const COLORS = ['124,92,255', '0,229,255', '255,53,199'];
+  const COLORS = ['109,75,255', '10,168,196', '217,38,176'];
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -66,7 +66,7 @@
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = `rgba(124,92,255,${(1 - dist / linkDist) * 0.22})`;
+          ctx.strokeStyle = `rgba(109,75,255,${(1 - dist / linkDist) * 0.18})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
