@@ -106,9 +106,16 @@ function rxInitTyped() {
   const words = JSON.parse(el.dataset.typed);
   let wordIndex = 0, charIndex = 0, deleting = false;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Guard against overlapping loops if rxInitTyped is called again
+  // (e.g. a language switch) while a previous run is still ticking.
+  const epoch = (parseInt(el.dataset.typedEpoch || '0', 10)) + 1;
+  el.dataset.typedEpoch = String(epoch);
+
   if (reduceMotion) { el.textContent = words[0]; return; }
 
   function tick() {
+    if (el.dataset.typedEpoch !== String(epoch)) return;
     const word = words[wordIndex];
     if (!deleting) {
       charIndex++;

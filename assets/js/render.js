@@ -18,7 +18,8 @@ function rxRenderServices(targetSelector, opts = {}) {
   const el = document.querySelector(targetSelector);
   if (!el) return;
   const { services } = rxLoadData();
-  const list = opts.limit ? services.slice(0, opts.limit) : services;
+  const localized = services.map((s) => (typeof rxLocalizeService === 'function' ? rxLocalizeService(s) : s));
+  const list = opts.limit ? localized.slice(0, opts.limit) : localized;
   el.innerHTML = list.map((s) => `
     <div class="card service-card" data-reveal>
       <div class="icon">${rxIcon(s.icon)}</div>
@@ -30,12 +31,14 @@ function rxRenderServices(targetSelector, opts = {}) {
 }
 
 function rxProjectCard(p) {
+  const demoLabel = typeof rxT === 'function' ? rxT('projects.demoLabel') : 'Live Demo';
+  const githubLabel = typeof rxT === 'function' ? rxT('projects.githubLabel') : 'GitHub';
   const demo = p.demo && p.demo !== '#'
-    ? `<a href="${p.demo}" target="_blank" rel="noopener">Live Demo ↗</a>`
-    : `<a href="#" class="disabled" onclick="return false;" style="opacity:.4;cursor:not-allowed;">Live Demo</a>`;
+    ? `<a href="${p.demo}" target="_blank" rel="noopener">${demoLabel} ↗</a>`
+    : `<a href="#" class="disabled" onclick="return false;" style="opacity:.4;cursor:not-allowed;">${demoLabel}</a>`;
   const gh = p.github && p.github !== '#'
-    ? `<a href="${p.github}" target="_blank" rel="noopener">GitHub ↗</a>`
-    : `<a href="#" onclick="return false;" style="opacity:.4;cursor:not-allowed;">GitHub</a>`;
+    ? `<a href="${p.github}" target="_blank" rel="noopener">${githubLabel} ↗</a>`
+    : `<a href="#" onclick="return false;" style="opacity:.4;cursor:not-allowed;">${githubLabel}</a>`;
   return `
     <div class="card project-card" data-reveal data-category="${(p.category || []).join(' ')}">
       <div class="project-media">${p.name}</div>
@@ -52,7 +55,8 @@ function rxRenderProjects(targetSelector, opts = {}) {
   const el = document.querySelector(targetSelector);
   if (!el) return;
   const { projects } = rxLoadData();
-  const list = opts.limit ? projects.slice(0, opts.limit) : projects;
+  const localized = projects.map((p) => (typeof rxLocalizeProject === 'function' ? rxLocalizeProject(p) : p));
+  const list = opts.limit ? localized.slice(0, opts.limit) : localized;
   el.innerHTML = list.map(rxProjectCard).join('');
   rxObserveReveals(el);
 }

@@ -1,11 +1,13 @@
 # RexLux Digital — Agency & Portfolio Website
 
-A modern, animated, dark-themed website for a web development agency — built as
-a plain static site (HTML/CSS/JS, no build step) so it can be deployed straight
-to GitHub Pages.
+A modern, animated website for a web development agency — built as a plain
+static site (HTML/CSS/JS, no build step) so it can be deployed straight to
+GitHub Pages.
 
 Pages: **Home · Services · Projects · Contact · Privacy Policy**, plus a
-lightweight **Admin** area for editing Services/Projects content.
+lightweight **Admin** area for editing Services/Projects content. Available in
+**English, French, Haitian Creole and Spanish** via the language switcher in
+the navbar.
 
 ## Go live (GitHub Pages)
 
@@ -40,6 +42,25 @@ The contact form has no backend of its own, so it posts to
    with your real endpoint.
 4. Commit and push. Until you do this, the form runs in a harmless "demo mode"
    that shows a success message but doesn't send anywhere.
+
+## Languages
+
+A dropdown in the navbar (`EN` / `FR` / `HT` / `ES`) switches the whole site
+between English, French, Haitian Creole and Spanish. The choice is saved in
+the visitor's browser (`localStorage`) and persists across pages.
+
+- All static page text (nav, headings, forms, FAQ, footer) is translated via
+  `assets/js/i18n.js` — each element carries a `data-i18n="key"` attribute
+  that gets its text swapped on load and on switch.
+- The default Services and Projects content is translated too, via a
+  per-language overlay in `assets/js/data.js` (`RX_I18N_CONTENT`), keyed by
+  each item's `id`.
+- **Admin-added or edited content stays in whatever language it was typed
+  in** — the admin panel itself is English-only, and there's no automatic
+  translation for content created after the defaults. This is a static site
+  with no translation API wired up; adding one is a reasonable next step if
+  the agency starts serving non-English-speaking clients who need to edit
+  their own copy.
 
 ## Editing content — the Admin panel
 
@@ -78,7 +99,8 @@ assets/
   css/style.css       Design system + animations
   js/
     particles.js       Animated canvas background
-    data.js             Site content (services/projects)
+    i18n.js             Language switcher + translation dictionaries
+    data.js             Site content (services/projects) + translation overlay
     render.js           Renders content into the DOM
     main.js              Nav, scroll reveals, counters, typing effect, FAQ, filters
     contact.js            Formspree form submission
@@ -89,7 +111,8 @@ assets/
 
 ## Design
 
-Dark, glassmorphic, "high-tech" aesthetic: animated particle-network
+An ink-wash-inspired aesthetic — warm parchment background, black ink
+typography, a single vermillion-red accent — with animated particle/ember
 background, scroll-triggered reveals, a typing hero headline, an animated
 terminal panel, a scrolling tech marquee, glowing gradient buttons, and
 tilting spotlight cards — built with plain CSS animations/transitions and

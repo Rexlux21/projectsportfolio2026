@@ -23,9 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    const t = (key, fallback) => (typeof rxT === 'function' ? rxT(key) : fallback);
     const originalLabel = submitBtn.textContent;
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
+    submitBtn.textContent = t('contact.status.sending', 'Sending…');
 
     const data = new FormData(form);
 
@@ -37,18 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: { Accept: 'application/json' },
         });
         if (res.ok) {
-          showStatus(true, "Thanks — your message is in. We'll reply within one business day.");
+          showStatus(true, t('contact.status.success', "Thanks — your message is in. We'll reply within one business day."));
           form.reset();
         } else {
-          showStatus(false, 'Something went wrong sending your message. Please email us directly.');
+          showStatus(false, t('contact.status.error', 'Something went wrong sending your message. Please email us directly.'));
         }
       } catch (err) {
-        showStatus(false, 'Network error — please check your connection and try again.');
+        showStatus(false, t('contact.status.networkError', 'Network error — please check your connection and try again.'));
       }
     } else {
       // Fallback demo mode until a Formspree endpoint is configured.
       await new Promise((r) => setTimeout(r, 700));
-      showStatus(true, "Demo mode: form captured locally. Connect Formspree in assets/js/contact.js to go live.");
+      showStatus(true, t('contact.status.demoMode', 'Demo mode: form captured locally. Connect Formspree in assets/js/contact.js to go live.'));
       form.reset();
     }
 
