@@ -107,7 +107,7 @@ const RX_DEFAULT_DATA = {
       category: ['business'],
       tech: ['HTML/CSS', 'JavaScript'],
       description: 'A welcoming community site with event calendars and sermon archives.',
-      demo: '#',
+      demo: 'antioch-church/',
       github: '#',
     },
     {

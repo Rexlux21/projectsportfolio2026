@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antioch Community Church — A Place to Belong</title>
+<meta name="description" content="Antioch Community Church — Sunday worship, community events and sermons. A demo project built by RexLux Digital.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%239c2418%22/><text x=%2250%25%22 y=%2262%25%22 font-size=%2258%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22serif%22 font-weight=%22bold%22>A</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  /* Small additions specific to this demo site — everything else reuses
+     the shared RexLux design system in ../assets/css/style.css */
+  :root{--banner-h:42px;}
+  .demo-banner{
+    position:fixed;top:0;left:0;right:0;z-index:101;
+    background:var(--text);color:var(--bg);
+    text-align:center;font-size:.82rem;font-weight:600;
+    padding:10px 16px;
+    min-height:var(--banner-h);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .demo-banner a{color:inherit;text-decoration:underline;}
+  .navbar{top:var(--banner-h);}
+  .hero{padding-top:calc(var(--nav-h) + var(--banner-h));}
+  @media(max-width:900px){.nav-links{top:calc(var(--nav-h) + var(--banner-h));}}
+  .schedule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:760px){.schedule-grid{grid-template-columns:1fr;}}
+  .schedule-card{text-align:center;}
+  .schedule-card .day{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary-2);margin-bottom:8px;}
+  .schedule-card .time{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:6px;}
+  .sermon-card{padding:0;overflow:hidden;}
+  .sermon-media{
+    aspect-ratio:16/9;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(255,255,255,.92);
+  }
+  .sermon-body{padding:22px 24px;}
+  .sermon-body .date{font-size:.78rem;color:var(--text-dimmer);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+  .sermon-body h3{font-size:1.1rem;margin-bottom:.3em;}
+  .sermon-body p{font-size:.88rem;margin-bottom:0;}
+  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  @media(max-width:760px){.contact-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:480px){.contact-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body data-page="antioch">
+
+<div class="demo-banner">
+  Portfolio demo site built by <a href="../index.html">RexLux Digital</a> — not a real church.
+</div>
+
+<a href="#main" class="skip-link">Skip to content</a>
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="noise-overlay"></div>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="#main" class="logo"><span class="logo-mark">A</span>Antioch Community Church</a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#schedule">Service Times</a>
+      <a href="#events">Events</a>
+      <a href="#sermons">Sermons</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#visit" class="btn btn-ghost btn-sm">Plan a Visit</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="hero-inner">
+      <div class="eyebrow text-center" style="justify-content:center;display:flex;">Welcome Home</div>
+      <h1>A Place to Belong,<br>Believe &amp; <span class="gradient-text">Grow Together.</span></h1>
+      <p class="lede">Antioch Community Church is a warm, welcoming family in the heart of the city — join us this Sunday.</p>
+      <div class="hero-cta">
+        <a href="#schedule" class="btn btn-ghost">Service Times</a>
+        <a href="#visit" class="btn btn-primary">Plan Your Visit</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num" data-count="3" data-suffix="+">0</div><div class="label">Weekly Gatherings</div></div>
+        <div class="hero-stat"><div class="num" data-count="40" data-suffix=" yrs">0</div><div class="label">Serving the Community</div></div>
+        <div class="hero-stat"><div class="num" data-count="12" data-suffix="+">0</div><div class="label">Ministries &amp; Groups</div></div>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-copy" data-reveal="left">
+        <div class="eyebrow">Who We Are</div>
+        <h2>A community built on faith, family and service.</h2>
+        <p>For over four decades, Antioch Community Church has been a home for people from every walk of life — a place to ask honest questions, build real friendships, and grow in faith together. Whether you're visiting for the first time or you've been part of our family for years, there's a seat for you.</p>
+        <ul class="about-checks">
+          <li><span class="dot2">✓</span> Warm, casual services — come as you are</li>
+          <li><span class="dot2">✓</span> Kids' & youth programs during every service</li>
+          <li><span class="dot2">✓</span> Small groups meeting throughout the week</li>
+        </ul>
+      </div>
+      <div data-reveal="right">
+        <div class="terminal">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <div class="terminal-body" style="padding:26px 24px;">
+            <div class="c3">This Week at Antioch</div>
+            <div class="c1">Sun — Worship Service, 9 &amp; 11 AM</div>
+            <div class="c1">Wed — Bible Study, 7 PM</div>
+            <div class="c2">✓ Everyone welcome, every week</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Times -->
+  <section class="section-tight" id="schedule">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Join Us</div>
+        <h2>Service Times</h2>
+        <p>Three simple ways to gather with us each week — no reservation needed.</p>
+      </div>
+      <div class="schedule-grid stagger">
+        <div class="card schedule-card" data-reveal>
+          <div class="day">Sunday</div>
+          <div class="time">9:00 & 11:00 AM</div>
+          <p>Worship Service &amp; Kids' Ministry</p>
+        </div>
+        <div class="card schedule-card" data-reveal>
+          <div class="day">Sunday</div>
+          <div class="time">9:45 AM</div>
+          <p>Sunday School — All Ages</p>
+        </div>
+        <div class="card schedule-card" data-reveal>
+          <div class="day">Wednesday</div>
+          <div class="time">7:00 PM</div>
+          <p>Midweek Bible Study &amp; Prayer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="events">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">What's Happening</div>
+        <h2>Upcoming Events</h2>
+        <p>A few of the ways our church family gathers outside of Sunday mornings.</p>
+      </div>
+      <div class="grid-3 stagger">
+        <div class="card service-card" data-reveal>
+          <div class="icon">🍂</div>
+          <h3>Fall Fellowship Picnic</h3>
+          <p>Saturday, October 10 · 12:00 PM — Food, games and live music at Riverside Park.</p>
+        </div>
+        <div class="card service-card" data-reveal>
+          <div class="icon">🏕️</div>
+          <h3>Youth Retreat</h3>
+          <p>October 24–26 · A weekend away for grades 6–12, focused on faith and friendship.</p>
+        </div>
+        <div class="card service-card" data-reveal>
+          <div class="icon">🥫</div>
+          <h3>Community Food Drive</h3>
+          <p>Every 1st Saturday · 10:00 AM — Serving neighbors in need alongside local partners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sermons -->
+  <section class="section-tight" id="sermons">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Catch Up</div>
+        <h2>Recent Sermons</h2>
+        <p>Missed a Sunday, or want to revisit a message? Recent messages, right here.</p>
+      </div>
+      <div class="grid-3 stagger">
+        <div class="card sermon-card" data-reveal>
+          <div class="sermon-media">▶</div>
+          <div class="sermon-body">
+            <div class="date">September 14 · Pastor James Cole</div>
+            <h3>Roots Before Fruit</h3>
+            <p>The first message in our new series on steady, patient faith.</p>
+          </div>
+        </div>
+        <div class="card sermon-card" data-reveal>
+          <div class="sermon-media">▶</div>
+          <div class="sermon-body">
+            <div class="date">September 7 · Pastor James Cole</div>
+            <h3>A Table for Everyone</h3>
+            <p>What it means to welcome others the way we've been welcomed.</p>
+          </div>
+        </div>
+        <div class="card sermon-card" data-reveal>
+          <div class="sermon-media">▶</div>
+          <div class="sermon-body">
+            <div class="date">August 31 · Pastor Maria Ellis</div>
+            <h3>Rest as Resistance</h3>
+            <p>Rediscovering Sabbath in a season that asks too much of us.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit / CTA -->
+  <section id="visit">
+    <div class="container">
+      <div class="cta-band" data-reveal="scale">
+        <h2>New here? We'd love to meet you.</h2>
+        <p>Stop by the Welcome Desk before or after any service — someone will always be glad to show you around.</p>
+        <a href="mailto:hello@antiochchurch.example" class="btn btn-primary">Plan Your Visit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location / Contact -->
+  <section class="section-tight">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Find Us</div>
+        <h2>Location &amp; Contact</h2>
+      </div>
+      <div class="contact-grid stagger">
+        <div class="feature" data-reveal><span class="check">📍</span><span class="label">120 Riverside Ave</span></div>
+        <div class="feature" data-reveal><span class="check">☎</span><span class="label">(555) 040-2020</span></div>
+        <div class="feature" data-reveal><span class="check">✉</span><span class="label">hello@antiochchurch.example</span></div>
+        <div class="feature" data-reveal><span class="check">🕐</span><span class="label">Office: Mon–Fri, 9–4</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>&copy; <span data-year></span> Antioch Community Church. A portfolio demo by RexLux Digital.</span>
+      <a href="../projects.html">← Back to RexLux Portfolio</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
