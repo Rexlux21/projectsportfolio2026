@@ -41,7 +41,7 @@ function rxProjectCard(p) {
     : `<a href="#" onclick="return false;" style="opacity:.4;cursor:not-allowed;">${githubLabel}</a>`;
   return `
     <div class="card project-card" data-reveal data-category="${(p.category || []).join(' ')}">
-      <div class="project-media">${p.name}</div>
+      <div class="project-media">${p.image ? `<img src="${p.image}" alt="Screenshot of ${p.name}" loading="lazy">` : p.name}</div>
       <div class="project-body">
         <div class="project-tags">${(p.tech || []).map((t) => `<span class="tag">${t}</span>`).join('')}</div>
         <h3>${p.name}</h3>

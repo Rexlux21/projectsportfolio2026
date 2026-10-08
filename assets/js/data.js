@@ -58,6 +58,7 @@ const RX_DEFAULT_DATA = {
   projects: [
     {
       id: 'melanda-alcius',
+      image: 'assets/img/projects/melanda-alcius.jpg',
       name: 'Melanda Alcius — Fashion Studio',
       category: ['react', 'business'],
       tech: ['React', 'Motion', 'Admin Panel'],
@@ -67,6 +68,7 @@ const RX_DEFAULT_DATA = {
     },
     {
       id: 'antioch-church',
+      image: 'assets/img/projects/antioch-church.jpg',
       name: 'Antioch Church',
       category: ['business'],
       tech: ['HTML/CSS', 'JavaScript'],
@@ -76,6 +78,7 @@ const RX_DEFAULT_DATA = {
     },
     {
       id: 'chef-mickeys-kitchen',
+      image: 'assets/img/projects/chef-mickeys-kitchen.jpg',
       name: "Chef Mickey's Kitchen",
       category: ['business', 'landing'],
       tech: ['HTML/CSS', 'JavaScript'],
@@ -85,6 +88,7 @@ const RX_DEFAULT_DATA = {
     },
     {
       id: 'tonus',
+      image: 'assets/img/projects/tonus.jpg',
       name: 'Tonus',
       category: ['react'],
       tech: ['JavaScript', 'Web Audio'],
