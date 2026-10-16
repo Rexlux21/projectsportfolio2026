@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marlo Goods — Trending Finds, Delivered Fast</title>
+<meta name="description" content="Marlo Goods — a dropshipping storefront for trending tech, home and lifestyle products. A demo project built by RexLux Digital.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%239c2418%22/><text x=%2250%25%22 y=%2262%25%22 font-size=%2258%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22serif%22 font-weight=%22bold%22>M</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  /* Small additions specific to this demo site — everything else reuses
+     the shared RexLux design system in ../assets/css/style.css */
+  :root{--banner-h:42px;}
+  .demo-banner{
+    position:fixed;top:0;left:0;right:0;z-index:101;
+    background:var(--text);color:var(--bg);
+    text-align:center;font-size:.82rem;font-weight:600;
+    padding:10px 16px;
+    min-height:var(--banner-h);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .demo-banner a{color:inherit;text-decoration:underline;}
+  .navbar{top:var(--banner-h);}
+  .hero{padding-top:calc(var(--nav-h) + var(--banner-h));}
+  @media(max-width:900px){.nav-links{top:calc(var(--nav-h) + var(--banner-h));}}
+
+  .cart-btn{
+    position:relative;display:inline-flex;align-items:center;gap:8px;
+    background:var(--surface);border:1px solid var(--border);border-radius:100px;
+    padding:10px 18px;font-size:.85rem;font-weight:700;color:var(--text);cursor:pointer;
+    transition:border-color .3s,background .3s;
+  }
+  .cart-btn:hover{border-color:var(--border-strong);background:var(--surface-strong);}
+  .cart-count{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:20px;height:20px;padding:0 5px;border-radius:100px;
+    background:var(--primary);color:#fdfaf5;font-size:.72rem;font-weight:800;
+  }
+
+  .category-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .category-chip{
+    display:flex;align-items:center;gap:10px;
+    padding:14px 22px;border-radius:100px;
+    background:var(--surface);border:1px solid var(--border);
+    font-weight:600;font-size:.9rem;
+    transition:transform .3s var(--ease),border-color .3s;
+  }
+  .category-chip:hover{transform:translateY(-3px);border-color:var(--border-strong);}
+  .category-chip .emoji{font-size:1.3rem;}
+
+  .product-card{padding:0;overflow:hidden;}
+  .product-media{
+    aspect-ratio:1/1;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    display:flex;align-items:center;justify-content:center;
+    font-size:3rem;
+  }
+  .product-body{padding:20px 22px 24px;}
+  .product-body .cat{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--primary-2);font-weight:700;margin-bottom:6px;}
+  .product-body h3{font-size:1.05rem;margin-bottom:.3em;}
+  .product-body .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:14px;}
+  .product-body .price{font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;}
+  .product-body .price .was{font-family:'Inter',sans-serif;font-weight:500;font-size:.85rem;color:var(--text-dimmer);text-decoration:line-through;margin-right:6px;}
+  .add-cart-btn{
+    border:none;border-radius:100px;padding:9px 18px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    color:#fdfaf5;font-weight:700;font-size:.82rem;cursor:pointer;
+    transition:transform .25s var(--ease);
+  }
+  .add-cart-btn:hover{transform:translateY(-2px);}
+  .add-cart-btn.added{background:linear-gradient(135deg,var(--success),var(--primary-2));}
+</style>
+</head>
+<body data-page="marlo">
+
+<div class="demo-banner">
+  Portfolio demo site built by <a href="../index.html">RexLux Digital</a> — a sample storefront, not a real store. Cart is for demonstration only.
+</div>
+
+<a href="#main" class="skip-link">Skip to content</a>
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="noise-overlay"></div>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="#main" class="logo"><span class="logo-mark">M</span>Marlo Goods</a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#categories">Categories</a>
+      <a href="#why">Why Us</a>
+      <a href="#newsletter">Deals</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="cart-btn" id="cart-btn" type="button">🛒 Cart <span class="cart-count" id="cart-count">0</span></button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="hero-inner">
+      <div class="eyebrow text-center" style="justify-content:center;display:flex;">New Arrivals Weekly</div>
+      <h1>Trending Finds,<br>Delivered <span class="gradient-text">Fast.</span></h1>
+      <p class="lede">Hand-picked tech, home and lifestyle products shipped straight to your door — no warehouse markups, just great finds at fair prices.</p>
+      <div class="hero-cta">
+        <a href="#shop" class="btn btn-primary">Shop Now</a>
+        <a href="#categories" class="btn btn-ghost">Browse Categories</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num" data-count="500" data-suffix="+">0</div><div class="label">Products</div></div>
+        <div class="hero-stat"><div class="num" data-count="40" data-suffix="+">0</div><div class="label">Countries Shipped</div></div>
+        <div class="hero-stat"><div class="num" data-count="12" data-suffix="k+">0</div><div class="label">Happy Customers</div></div>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section-tight" id="categories">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Shop by Category</div>
+        <h2>Find Your Thing</h2>
+      </div>
+      <div class="category-row stagger">
+        <div class="category-chip" data-reveal><span class="emoji">🎧</span> Tech &amp; Gadgets</div>
+        <div class="category-chip" data-reveal><span class="emoji">🏠</span> Home &amp; Living</div>
+        <div class="category-chip" data-reveal><span class="emoji">💄</span> Beauty &amp; Self-Care</div>
+        <div class="category-chip" data-reveal><span class="emoji">🏋️</span> Fitness &amp; Outdoors</div>
+        <div class="category-chip" data-reveal><span class="emoji">🐾</span> Pet Essentials</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="shop">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Best Sellers</div>
+        <h2>Featured Products</h2>
+        <p>Our most-loved picks this week, restocked and ready to ship.</p>
+      </div>
+      <div class="grid-3 stagger" id="product-grid">
+        <div class="card product-card" data-reveal>
+          <div class="product-media">🎧</div>
+          <div class="product-body">
+            <div class="cat">Tech &amp; Gadgets</div>
+            <h3>Wireless Noise-Cancelling Earbuds</h3>
+            <div class="price-row">
+              <div class="price"><span class="was">$59.99</span>$34.99</div>
+              <button class="add-cart-btn" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="card product-card" data-reveal>
+          <div class="product-media">💡</div>
+          <div class="product-body">
+            <div class="cat">Home &amp; Living</div>
+            <h3>RGB Smart LED Strip Lights</h3>
+            <div class="price-row">
+              <div class="price">$22.99</div>
+              <button class="add-cart-btn" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="card product-card" data-reveal>
+          <div class="product-media">🧴</div>
+          <div class="product-body">
+            <div class="cat">Beauty &amp; Self-Care</div>
+            <h3>Facial Ice Roller Set</h3>
+            <div class="price-row">
+              <div class="price"><span class="was">$24.99</span>$15.99</div>
+              <button class="add-cart-btn" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="card product-card" data-reveal>
+          <div class="product-media">🏋️</div>
+          <div class="product-body">
+            <div class="cat">Fitness &amp; Outdoors</div>
+            <h3>Resistance Bands Set (5-Pack)</h3>
+            <div class="price-row">
+              <div class="price">$18.49</div>
+              <button class="add-cart-btn" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="card product-card" data-reveal>
+          <div class="product-media">🐾</div>
+          <div class="product-body">
+            <div class="cat">Pet Essentials</div>
+            <h3>Automatic Pet Water Fountain</h3>
+            <div class="price-row">
+              <div class="price"><span class="was">$39.99</span>$27.99</div>
+              <button class="add-cart-btn" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="card product-card" data-reveal>
+          <div class="product-media">📱</div>
+          <div class="product-body">
+            <div class="cat">Tech &amp; Gadgets</div>
+            <h3>MagSafe-Compatible Wallet Stand</h3>
+            <div class="price-row">
+              <div class="price">$16.99</div>
+              <button class="add-cart-btn" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why shop with us -->
+  <section class="section-tight" id="why">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Why Marlo Goods</div>
+        <h2>Shop With Confidence</h2>
+      </div>
+      <div class="feature-grid stagger">
+        <div class="feature" data-reveal><span class="check">🚚</span><span class="label">Fast Worldwide Shipping</span></div>
+        <div class="feature" data-reveal><span class="check">🔒</span><span class="label">Secure Checkout</span></div>
+        <div class="feature" data-reveal><span class="check">↩️</span><span class="label">30-Day Easy Returns</span></div>
+        <div class="feature" data-reveal><span class="check">💬</span><span class="label">24/7 Customer Support</span></div>
+        <div class="feature" data-reveal><span class="check">✅</span><span class="label">Quality Checked Products</span></div>
+        <div class="feature" data-reveal><span class="check">💳</span><span class="label">Buy Now, Pay Later</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter / CTA -->
+  <section id="newsletter">
+    <div class="container">
+      <div class="cta-band" data-reveal="scale">
+        <h2>Get 10% Off Your First Order</h2>
+        <p>Join the list for weekly drops, flash sales and new arrivals before anyone else.</p>
+        <form id="newsletter-form" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:420px;margin:0 auto;">
+          <input type="email" required placeholder="you@email.com" style="flex:1;min-width:200px;background:#fff;border:1px solid var(--border);border-radius:100px;padding:13px 20px;color:var(--text);font-family:inherit;font-size:.95rem;">
+          <button type="submit" class="btn btn-primary">Get My Code</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>&copy; <span data-year></span> Marlo Goods. A portfolio demo by RexLux Digital.</span>
+      <a href="../projects.html">← Back to RexLux Portfolio</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+  /* Lightweight demo cart — client-side only, no real checkout/payment. */
+  (function () {
+    const KEY = 'marlo_demo_cart_count';
+    const countEl = document.getElementById('cart-count');
+    const cartBtn = document.getElementById('cart-btn');
+
+    function getCount() {
+      return parseInt(localStorage.getItem(KEY) || '0', 10) || 0;
+    }
+    function setCount(n) {
+      localStorage.setItem(KEY, String(n));
+      countEl.textContent = n;
+    }
+    setCount(getCount());
+
+    document.querySelectorAll('.add-cart-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        setCount(getCount() + 1);
+        const original = btn.textContent;
+        btn.textContent = 'Added ✓';
+        btn.classList.add('added');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('added');
+        }, 1200);
+      });
+    });
+
+    cartBtn.addEventListener('click', () => {
+      alert('This is a demo storefront — checkout isn\'t connected to a real payment processor. A live build would wire this up to Shopify, Stripe, or a similar cart/checkout provider.');
+    });
+
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = newsletterForm.querySelector('button');
+        const original = btn.textContent;
+        btn.textContent = 'Subscribed ✓';
+        newsletterForm.querySelector('input').value = '';
+        setTimeout(() => (btn.textContent = original), 2200);
+      });
+    }
+  })();
+</script>
+</body>
+</html>

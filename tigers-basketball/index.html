@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tigers Basketball — Roar Louder. Play Harder.</title>
+<meta name="description" content="Official site of the Tigers basketball team — roster, schedule, news and tickets. A demo project built by RexLux Digital.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%239c2418%22/><text x=%2250%25%22 y=%2262%25%22 font-size=%2254%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22serif%22 font-weight=%22bold%22>T</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  /* Small additions specific to this demo site — everything else reuses
+     the shared RexLux design system in ../assets/css/style.css */
+  :root{--banner-h:42px;}
+  .demo-banner{
+    position:fixed;top:0;left:0;right:0;z-index:101;
+    background:var(--text);color:var(--bg);
+    text-align:center;font-size:.82rem;font-weight:600;
+    padding:10px 16px;
+    min-height:var(--banner-h);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .demo-banner a{color:inherit;text-decoration:underline;}
+  .navbar{top:var(--banner-h);}
+  .hero{padding-top:calc(var(--nav-h) + var(--banner-h));}
+  @media(max-width:900px){.nav-links{top:calc(var(--nav-h) + var(--banner-h));}}
+
+  .player-card{text-align:center;}
+  .player-num{
+    width:64px;height:64px;margin:0 auto 16px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    color:#fdfaf5;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-weight:800;font-size:1.6rem;
+  }
+  .player-card .pos{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--primary-2);margin-bottom:4px;}
+  .player-card h3{font-size:1.1rem;margin-bottom:.1em;}
+  .player-card .ht{font-size:.85rem;color:var(--text-dimmer);margin:0;}
+
+  .game-row{
+    display:grid;grid-template-columns:90px 1fr auto;gap:18px;align-items:center;
+    padding:18px 22px;border:1px solid var(--border);border-radius:var(--radius-md);
+    background:var(--surface);margin-bottom:12px;
+  }
+  .game-row .date{font-weight:700;font-size:.85rem;color:var(--primary-2);}
+  .game-row .opp{font-weight:600;}
+  .game-row .loc{font-size:.82rem;color:var(--text-dimmer);}
+  .game-row .result{
+    font-weight:700;font-size:.85rem;padding:6px 14px;border-radius:100px;white-space:nowrap;
+  }
+  .game-row .result.win{background:rgba(74,120,86,.15);color:var(--success);}
+  .game-row .result.upcoming{background:var(--surface-strong);color:var(--text-dim);}
+  @media(max-width:600px){
+    .game-row{grid-template-columns:1fr;text-align:center;}
+  }
+  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  @media(max-width:760px){.contact-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:480px){.contact-grid{grid-template-columns:1fr;}}
+  .sermon-card{padding:0;overflow:hidden;}
+  .sermon-media{aspect-ratio:16/9;}
+  .sermon-body{padding:22px 24px;}
+  .sermon-body .date{font-size:.78rem;color:var(--text-dimmer);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+  .sermon-body h3{font-size:1.1rem;margin-bottom:.3em;}
+  .sermon-body p{font-size:.88rem;margin-bottom:0;}
+</style>
+</head>
+<body data-page="tigers">
+
+<div class="demo-banner">
+  Portfolio demo site built by <a href="../index.html">RexLux Digital</a> — not a real team.
+</div>
+
+<a href="#main" class="skip-link">Skip to content</a>
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="noise-overlay"></div>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="#main" class="logo"><span class="logo-mark">T</span>Tigers Basketball</a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#roster">Roster</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#news">News</a>
+      <a href="#tickets">Tickets</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#tickets" class="btn btn-ghost btn-sm">Get Tickets</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="hero-inner">
+      <div class="eyebrow text-center" style="justify-content:center;display:flex;">Est. 1998 · Metro League Champions</div>
+      <h1>Roar Louder.<br>Play <span class="gradient-text">Harder.</span></h1>
+      <p class="lede">The Tigers are the city's home team — relentless on defense, electric in transition, and backed by the loudest fans in the league.</p>
+      <div class="hero-cta">
+        <a href="#schedule" class="btn btn-ghost">View Schedule</a>
+        <a href="#tickets" class="btn btn-primary">Get Tickets</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num" data-count="24" data-suffix="-6">0</div><div class="label">This Season</div></div>
+        <div class="hero-stat"><div class="num" data-count="7" data-suffix="+">0</div><div class="label">League Titles</div></div>
+        <div class="hero-stat"><div class="num" data-count="26" data-suffix=" yrs">0</div><div class="label">Tigers Legacy</div></div>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+  </section>
+
+  <!-- About / Team -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-copy" data-reveal="left">
+        <div class="eyebrow">About the Team</div>
+        <h2>Built on defense. Defined by heart.</h2>
+        <p>For over two decades, the Tigers have given this city a team to rally behind — a roster of hard-working players, a bench that never quits, and a fanbase that shows up every single night. We play fast, we play physical, and we play for each other.</p>
+        <ul class="about-checks">
+          <li><span class="dot2">✓</span> 7 Metro League championships since 1998</li>
+          <li><span class="dot2">✓</span> Home court advantage — Tiger Den Arena</li>
+          <li><span class="dot2">✓</span> Youth clinics &amp; community programs year-round</li>
+        </ul>
+      </div>
+      <div data-reveal="right">
+        <div class="terminal">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <div class="terminal-body" style="padding:26px 24px;">
+            <div class="c3">Season Stats</div>
+            <div class="c1">record · 24-6</div>
+            <div class="c1">streak · W7</div>
+            <div class="c1">ppg · 94.2</div>
+            <div class="c2">✓ #1 seed, Metro League Playoffs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roster -->
+  <section class="section-tight" id="roster">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">The Squad</div>
+        <h2>Starting Roster</h2>
+        <p>Meet the five on the floor when it matters most.</p>
+      </div>
+      <div class="grid-3 stagger">
+        <div class="card player-card" data-reveal>
+          <div class="player-num">23</div>
+          <div class="pos">Point Guard</div>
+          <h3>Marcus Reid</h3>
+          <p class="ht">6'1" · Senior Captain</p>
+        </div>
+        <div class="card player-card" data-reveal>
+          <div class="player-num">11</div>
+          <div class="pos">Shooting Guard</div>
+          <h3>Jaylen Cole</h3>
+          <p class="ht">6'4" · League Leading Scorer</p>
+        </div>
+        <div class="card player-card" data-reveal>
+          <div class="player-num">34</div>
+          <div class="pos">Small Forward</div>
+          <h3>Darius Okafor</h3>
+          <p class="ht">6'6" · Defensive MVP '25</p>
+        </div>
+        <div class="card player-card" data-reveal>
+          <div class="player-num">42</div>
+          <div class="pos">Power Forward</div>
+          <h3>Tyrell Banks</h3>
+          <p class="ht">6'8" · Rebounding Leader</p>
+        </div>
+        <div class="card player-card" data-reveal>
+          <div class="player-num">5</div>
+          <div class="pos">Center</div>
+          <h3>Omar Fitzgerald</h3>
+          <p class="ht">6'10" · Shot Block Leader</p>
+        </div>
+        <div class="card player-card" data-reveal>
+          <div class="player-num">7</div>
+          <div class="pos">Head Coach</div>
+          <h3>Coach Dana Whitfield</h3>
+          <p class="ht">3x Coach of the Year</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule -->
+  <section id="schedule">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Mark Your Calendar</div>
+        <h2>Game Schedule</h2>
+        <p>Recent results and the games still ahead this season.</p>
+      </div>
+      <div style="max-width:720px;margin:0 auto;" data-reveal>
+        <div class="game-row">
+          <div class="date">Sep 28</div>
+          <div><div class="opp">vs. River City Hawks</div><div class="loc">Home · Tiger Den Arena</div></div>
+          <div class="result win">W 102–88</div>
+        </div>
+        <div class="game-row">
+          <div class="date">Oct 3</div>
+          <div><div class="opp">@ Northside Wolves</div><div class="loc">Away</div></div>
+          <div class="result win">W 95–79</div>
+        </div>
+        <div class="game-row">
+          <div class="date">Oct 11</div>
+          <div><div class="opp">vs. Eastline Comets</div><div class="loc">Home · Tiger Den Arena</div></div>
+          <div class="result win">W 110–101</div>
+        </div>
+        <div class="game-row">
+          <div class="date">Oct 24</div>
+          <div><div class="opp">vs. Westbrook Lions</div><div class="loc">Home · Tiger Den Arena · 7:00 PM</div></div>
+          <div class="result upcoming">Upcoming</div>
+        </div>
+        <div class="game-row">
+          <div class="date">Oct 31</div>
+          <div><div class="opp">@ River City Hawks</div><div class="loc">Away · 7:30 PM</div></div>
+          <div class="result upcoming">Upcoming</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section class="section-tight" id="news">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Latest</div>
+        <h2>Team News &amp; Highlights</h2>
+        <p>What's happening with the Tigers on and off the court.</p>
+      </div>
+      <div class="grid-3 stagger">
+        <div class="card sermon-card" data-reveal>
+          <div class="sermon-media" style="background:linear-gradient(135deg,var(--primary),var(--primary-2));display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.92);">▶</div>
+          <div class="sermon-body">
+            <div class="date">October 12</div>
+            <h3>Cole Drops 38 in Comeback Win</h3>
+            <p>Jaylen Cole's career-high night powers a fourth-quarter rally over Eastline.</p>
+          </div>
+        </div>
+        <div class="card sermon-card" data-reveal>
+          <div class="sermon-media" style="background:linear-gradient(135deg,var(--primary),var(--primary-2));display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.92);">▶</div>
+          <div class="sermon-body">
+            <div class="date">October 5</div>
+            <h3>Tigers Climb to #1 Seed</h3>
+            <p>A 7-game win streak moves the Tigers to the top of the Metro League standings.</p>
+          </div>
+        </div>
+        <div class="card sermon-card" data-reveal>
+          <div class="sermon-media" style="background:linear-gradient(135deg,var(--primary),var(--primary-2));display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.92);">▶</div>
+          <div class="sermon-body">
+            <div class="date">September 20</div>
+            <h3>Youth Clinic Registration Open</h3>
+            <p>Sign up kids ages 8–14 for free Saturday clinics with Tigers players and coaches.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tickets / CTA -->
+  <section id="tickets">
+    <div class="container">
+      <div class="cta-band" data-reveal="scale">
+        <h2>Catch the Next Home Game</h2>
+        <p>Tigers vs. Westbrook Lions · October 24 · 7:00 PM · Tiger Den Arena</p>
+        <a href="mailto:tickets@tigersbasketball.example" class="btn btn-primary">Get Tickets</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section-tight">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow" style="justify-content:center;display:flex;">Find Us</div>
+        <h2>Tiger Den Arena</h2>
+      </div>
+      <div class="contact-grid stagger">
+        <div class="card" data-reveal style="display:flex;align-items:center;gap:14px;"><span class="check" style="width:34px;height:34px;flex:none;border-radius:50%;background:linear-gradient(135deg,var(--success),var(--primary-2));display:flex;align-items:center;justify-content:center;color:#04120c;font-weight:700;">📍</span><span class="label" style="font-weight:600;font-size:.96rem;">800 Stadium Way</span></div>
+        <div class="card" data-reveal style="display:flex;align-items:center;gap:14px;"><span class="check" style="width:34px;height:34px;flex:none;border-radius:50%;background:linear-gradient(135deg,var(--success),var(--primary-2));display:flex;align-items:center;justify-content:center;color:#04120c;font-weight:700;">☎</span><span class="label" style="font-weight:600;font-size:.96rem;">(555) 080-7700</span></div>
+        <div class="card" data-reveal style="display:flex;align-items:center;gap:14px;"><span class="check" style="width:34px;height:34px;flex:none;border-radius:50%;background:linear-gradient(135deg,var(--success),var(--primary-2));display:flex;align-items:center;justify-content:center;color:#04120c;font-weight:700;">✉</span><span class="label" style="font-weight:600;font-size:.96rem;">tickets@tigersbasketball.example</span></div>
+        <div class="card" data-reveal style="display:flex;align-items:center;gap:14px;"><span class="check" style="width:34px;height:34px;flex:none;border-radius:50%;background:linear-gradient(135deg,var(--success),var(--primary-2));display:flex;align-items:center;justify-content:center;color:#04120c;font-weight:700;">🕐</span><span class="label" style="font-weight:600;font-size:.96rem;">Box Office: Mon–Sat, 10–6</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>&copy; <span data-year></span> Tigers Basketball. A portfolio demo by RexLux Digital.</span>
+      <a href="../projects.html">← Back to RexLux Portfolio</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -96,6 +96,24 @@ const RX_DEFAULT_DATA = {
       demo: 'https://rexlux21.github.io/tonus/',
       github: 'https://github.com/Rexlux21/tonus',
     },
+    {
+      id: 'tigers-basketball',
+      name: 'Tigers Basketball',
+      category: ['business', 'landing', 'react'],
+      tech: ['React', 'JavaScript'],
+      description: 'An official team site with roster, schedule, news and ticket info for a city league basketball team.',
+      demo: 'tigers-basketball/',
+      github: '#',
+    },
+    {
+      id: 'marlo-goods',
+      name: 'Marlo Goods',
+      category: ['business', 'landing', 'react'],
+      tech: ['React', 'JavaScript'],
+      description: 'A dropshipping storefront with a product catalog, interactive cart and newsletter signup.',
+      demo: 'dropship-store/',
+      github: '#',
+    },
   ],
 };
 
@@ -117,6 +135,8 @@ const RX_I18N_CONTENT = {
       'antioch-church': { name: 'Église Antioch', description: "Un site d'église chaleureux et bilingue (créole et anglais) pour les cultes, les ministères et l'action communautaire." },
       'chef-mickeys-kitchen': { name: "Chef Mickey's Kitchen", description: 'Un site de cuisine et de traiteur appétissant qui transforme les visiteurs en clients affamés.' },
       'tonus': { name: 'Tonus', description: 'Une application web pour pratiquer le chant et les instruments avec un retour de justesse en temps réel dans le navigateur.' },
+      'tigers-basketball': { description: "Un site officiel d'équipe avec effectif, calendrier, actualités et billetterie pour une équipe de basketball de ligue municipale." },
+      'marlo-goods': { description: 'Une boutique en ligne de dropshipping avec catalogue de produits, panier interactif et inscription à la newsletter.' },
     },
   },
   ht: {
@@ -133,6 +153,8 @@ const RX_I18N_CONTENT = {
       'antioch-church': { name: 'Legliz Antioch', description: 'Yon sit legliz akeyan ki an de lang (Kreyòl ak Anglè) pou sèvis, ministè, ak aksyon kominotè.' },
       'chef-mickeys-kitchen': { name: "Chef Mickey's Kitchen", description: 'Yon sit manje ak katering ki fè vizitè yo vin kliyan grangou.' },
       'tonus': { name: 'Tonus', description: 'Yon aplikasyon wèb pou pratike chante ak enstriman avèk retou sou jistès nòt an tan reyèl nan navigatè a.' },
+      'tigers-basketball': { description: 'Yon sit ofisyèl ekip ak rosta, orè match, nouvèl ak enfòmasyon tikè pou yon ekip basketbòl lig vil la.' },
+      'marlo-goods': { description: 'Yon magazen dropshipping an liy avèk katalòg pwodwi, panye enteraktif, ak enskripsyon nouvèl.' },
     },
   },
   es: {
@@ -149,6 +171,8 @@ const RX_I18N_CONTENT = {
       'antioch-church': { name: 'Iglesia Antioch', description: 'Un sitio de iglesia acogedor y bilingüe (criollo e inglés) para cultos, ministerios y apoyo a la comunidad.' },
       'chef-mickeys-kitchen': { name: "Chef Mickey's Kitchen", description: 'Un apetitoso sitio de comida y catering que convierte a los visitantes en clientes hambrientos.' },
       'tonus': { name: 'Tonus', description: 'Una aplicación web para practicar canto e instrumentos con retroalimentación de afinación en tiempo real en el navegador.' },
+      'tigers-basketball': { description: 'Un sitio oficial del equipo con plantilla, calendario, noticias e información de boletos para un equipo de baloncesto de liga municipal.' },
+      'marlo-goods': { description: 'Una tienda de dropshipping con catálogo de productos, carrito interactivo y suscripción al boletín.' },
     },
   },
 };
